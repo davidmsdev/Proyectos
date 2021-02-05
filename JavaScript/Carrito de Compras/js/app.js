@@ -69,12 +69,19 @@ function carritoHTML() {
 
     // Recorre el carrito y genera el HTML
     articulosCarrito.forEach( curso => {
+
+        // Obtenemos los datos con destructuring
+        const {imagen, titulo, precio, cantidad, id } = curso;
         // Creamos una fila en la tabla por cada curso del carrito
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>
-                ${curso.titulo}
+                <img src="${imagen}" width="100">
             </td>
+            <td>${titulo}</td>
+            <td>${precio}</td>
+            <td>${cantidad}</td>
+            <td><a href="#" class="borrar-curso" data_id="${id}"> X </a></td>
         `;
 
         // Agrega el HTML del carrito en el TBDOY
