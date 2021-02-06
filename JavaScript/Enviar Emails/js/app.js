@@ -2,6 +2,9 @@
 const btnEnviar = document.querySelector('#enviar');
 const formulario = document.querySelector('#enviar-mail');
 
+// Mejoramos la comprobación con expresiones regulares https://emailregex.com/
+const er = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 // Variables campos formularios
 const email = document.querySelector('#email');
 const asunto = document.querySelector('#asunto');
@@ -32,7 +35,7 @@ function eventListeners() {
 function iniciarApp() {
 
     // De inicio deshabilitamso el botón de enviar y le añadimos una clase de Tailwind para darle estilo
-    btnEnviar.disabled = ture;
+    btnEnviar.disabled = true;
     // Cambiamos el cursor al apsar por encima y la opacidad
     btnEnviar.classList.add('cursor-not-allowed', 'opacity-50');
 }
@@ -71,9 +74,6 @@ function validarFormulario(e) {
         // Buscamos que almenos hay un carácter que es @, devuelve -1 si no la encuentra
         // const resultado = elemento.value.indexOf('@');
 
-        // Mejoramos la comprobación con expresiones regulares https://emailregex.com/
-        const er = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
         // El método test() ejecuta la búsqueda de una ocurrencia entre una expresión regular y una cadena especificada. Devuelve true o false.
         if(er.test(elemento.value)) {
             eliminarErrores();
@@ -86,6 +86,15 @@ function validarFormulario(e) {
             elemento.classList.add('border', 'border-red-500');
             mostrarError('El campo email no es válido');
         }
+    }
+
+    // Comprobamos que pasa todas las validaciones
+    if( er.test(email.value) !== '' && asunto.value !== '' && mensaje.value !== '') {
+        console.log('Validacion completa');
+
+        // Habilitamos el botón de enviar
+        btnEnviar.disabled = false;
+        btnEnviar.classList.remove('cursor-not-allowed', 'opacity-50');
     }
 }
 
@@ -113,5 +122,7 @@ function mostrarError(mensaje) {
  */
 function eliminarErrores() {
     const error = document.querySelector('p.error');
-    error.remove();
+    if(error) {
+        error.remove();
+    } 
 }
