@@ -1,7 +1,7 @@
 // Variables
 const carrito = document.querySelector('#carrito');
 const contenedorCarrito = document.querySelector('#lista-carrito tbody');
-const vaciarCarrito = document.querySelector('#vaciar-carrito');
+const vaciarCarritoBtn = document.querySelector('#vaciar-carrito');
 const listaCursos = document.querySelector('#lista-cursos');
 let articulosCarrito = [];
 
@@ -16,6 +16,16 @@ function cargarEventListeners() {
 
     // Elimina cursos del carrito
     carrito.addEventListener('click', eliminarCurso)
+
+    // Vaciar el carrito
+    vaciarCarritoBtn.addEventListener('click', () => {
+        
+        // Resetamos el array
+        articulosCarrito = [];
+
+        // Limpiamos el HTML
+        limpiarHTML();
+    });
 }
 
 /**
