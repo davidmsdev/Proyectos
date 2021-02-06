@@ -13,6 +13,9 @@ cargarEventListeners();
 function cargarEventListeners() {
     // Cuando agregas un curso presionando "Agregar al Carrito"
     listaCursos.addEventListener('click', agregarCurso);
+
+    // Elimina cursos del carrito
+    carrito.addEventListener('click', eliminarCurso)
 }
 
 /**
@@ -32,6 +35,27 @@ function agregarCurso(e) {
         leerDatosCurso(cursoSeleccionado);
     }
 
+}
+
+/**
+ * Elimina un curso creando un nuevo array con todos menos este
+ * @param {*} e 
+ */
+function eliminarCurso(e) {
+
+    // Comporbamos que le damos al elemento correcto para borrar, en este caso tiene una clase
+    if(e.target.classList.contains('borrar-curso')) {
+
+        console.log(e.target);
+        // Obtenemos el id del elemento clicado, a través de un atributo que tiene la etiqueta a
+        const cursoId = e.target.getAttribute('data-id');
+
+        // Elimina el curso, creamos un nuevo array con todos los elementos excepto el curso al que hemos clicado
+        articulosCarrito = articulosCarrito.filter( curso => curso.id !== cursoId);
+
+        // Llamamos al a función que imprime el carrito
+        carritoHTML();
+    }
 }
 
 /**
@@ -66,7 +90,7 @@ function leerDatosCurso(curso) {
         });
 
         articulosCarrito = [...cursos];
-        
+
     } else {
         // Agrega los elementos al array del carrito
         articulosCarrito = [...articulosCarrito, infoCurso];
@@ -102,7 +126,7 @@ function carritoHTML() {
             <td>${titulo}</td>
             <td>${precio}</td>
             <td>${cantidad}</td>
-            <td><a href="#" class="borrar-curso" data_id="${id}"> X </a></td>
+            <td><a href="#" class="borrar-curso" data-id="${id}"> X </a></td>
         `;
 
         // Agrega el HTML del carrito en el TBDOY
