@@ -44,14 +44,22 @@ function iniciarApp() {
 function validarFormulario(e) {
 
     const elemento = e.target;
+    console.log(elemento);
 
     // Acceder a los que el usuario escribe en el input
-    console.log(elemento.value);
+    if(elemento.value.length > 0) { 
 
-    if(elemento.value.lenght > 0) {
+        // Elimina los errores
+        eliminarErrores()
         
+        // En caso de que todo este OK, le quitamos (si la tiene) la clase del borde rojo
+        elemento.classList.remove('border', 'border-red-500');
+        elemento.classList.add('border', 'border-green-500'); 
+
     } else {
+
         // Añadimos estilos si el campo esta vacío con Tailwind
+        elemento.classList.remove('border', 'border-green-500');
         elemento.classList.add('border', 'border-red-500');
 
         // Mostramos un error
@@ -61,9 +69,21 @@ function validarFormulario(e) {
     // Validamos el campo de email
     if(elemento.type === 'email') {
         // Buscamos que almenos hay un carácter que es @, devuelve -1 si no la encuentra
-        const resultado = elemento.value.indexOf('@');
+        // const resultado = elemento.value.indexOf('@');
 
-        if(resultado < 0) {
+        // Mejoramos la comprobación con expresiones regulares https://emailregex.com/
+        const er = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        // El método test() ejecuta la búsqueda de una ocurrencia entre una expresión regular y una cadena especificada. Devuelve true o false.
+        if(er.test(elemento.value)) {
+            eliminarErrores();
+            elemento.classList.remove('border', 'border-red-500');
+            elemento.classList.add('border', 'border-green-500');
+
+        } else {
+            // Añadimos estilos si el campo esta vacío con Tailwind
+            elemento.classList.remove('border', 'border-green-500');
+            elemento.classList.add('border', 'border-red-500');
             mostrarError('El campo email no es válido');
         }
     }
@@ -86,4 +106,12 @@ function mostrarError(mensaje) {
         // Agregamos el mensaje al final del formulario
         formulario.appendChild(mensajeError);
     }
+}
+
+/**
+ * Elimina los mensajes de errores
+ */
+function eliminarErrores() {
+    const error = document.querySelector('p.error');
+    error.remove();
 }
