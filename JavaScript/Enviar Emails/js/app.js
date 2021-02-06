@@ -1,5 +1,6 @@
 // Variables
 const btnEnviar = document.querySelector('#enviar');
+const btnReset = document.querySelector('#resetBtn');
 const formulario = document.querySelector('#enviar-mail');
 
 // Mejoramos la comprobación con expresiones regulares https://emailregex.com/
@@ -24,6 +25,12 @@ function eventListeners() {
     email.addEventListener('blur', validarFormulario);
     asunto.addEventListener('blur', validarFormulario);
     mensaje.addEventListener('blur', validarFormulario);
+
+    // Enviar el email
+    formulario.addEventListener('submit', enviarEmail);
+
+    // Resetear el formulario
+    btnReset.addEventListener('click', resetearFormulario);
 }
 
 
@@ -125,4 +132,47 @@ function eliminarErrores() {
     if(error) {
         error.remove();
     } 
+}
+
+/**
+ * Envia el email
+ */
+function enviarEmail(e) {
+
+    // Prevenimos el comportamiento por defecto
+    e.preventDefault();
+
+    // Mostrando un spinner mientras se envia el email, https://tobiasahlin.com/spinkit/
+    const spinner = document.querySelector('#spinner');
+    spinner.style.display = 'flex';
+
+    // Ocultamos el spinner al pasar 3 segundos y mostramos un mensaje
+    setTimeout( () => {
+        spinner.style.display = 'none';
+
+        // Mensaje
+        const parrafo = document.createElement('p');
+        parrafo.textContent = 'El mensaje se envío completamente';
+        parrafo.classList.add('text-center', 'my-10', 'p-2', 'bg-green-500', 'text-white', 'font-bold', 'uppercase');
+
+        // Insertamos el mensaje antes del elemento
+        formulario.insertBefore(parrafo, spinner);
+
+        // Después de 5 segundos queremos eliminar el parrafo y reiniciar el formulario
+        setTimeout( () => {
+            parrafo.remove();
+            resetearFormulario();
+        }, 5000 );
+
+    }, 3000 );
+    
+}
+
+/**
+ * Reseta el formulario
+ */
+function resetearFormulario() {
+    formulario.reset();
+
+    iniciarApp();
 }
