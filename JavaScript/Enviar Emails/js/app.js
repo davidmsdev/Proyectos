@@ -37,6 +37,7 @@ function iniciarApp() {
     btnEnviar.classList.add('cursor-not-allowed', 'opacity-50');
 }
 
+
 /**
  * Valida los campos del formulario en tiempo real
  */
@@ -54,17 +55,28 @@ function validarFormulario(e) {
         elemento.classList.add('border', 'border-red-500');
 
         // Mostramos un error
-        mostrarError();
+        mostrarError('Todos los campos son obligatorios');
+    }
+
+    // Validamos el campo de email
+    if(elemento.type === 'email') {
+        // Buscamos que almenos hay un carácter que es @, devuelve -1 si no la encuentra
+        const resultado = elemento.value.indexOf('@');
+
+        if(resultado < 0) {
+            mostrarError('El campo email no es válido');
+        }
     }
 }
 
 
 /**
  * Muestra un mensaje de error si los campos estan vacios
+ * @param {*} mensaje Mensaje a mostrar
  */
-function mostrarError() {
+function mostrarError(mensaje) {
     const mensajeError = document.createElement('p');
-    mensajeError.textContent = 'Todos los campos son obligatorios';
+    mensajeError.textContent = mensaje;
     mensajeError.classList.add('border', 'border-red-500', 'background-red-100', 'text-red-500', 'p-3', 'mt-5', 'text-center', 'error');
 
     // Revisamos si ya hay algun elemento con esta clase para evitar repetir el mensaje de error
