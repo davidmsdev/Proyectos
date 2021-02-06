@@ -1,5 +1,6 @@
 // Variables
 const btnEnviar = document.querySelector('#enviar');
+const formulario = document.querySelector('#enviar-mail');
 
 // Variables campos formularios
 const email = document.querySelector('#email');
@@ -51,5 +52,26 @@ function validarFormulario(e) {
     } else {
         // Añadimos estilos si el campo esta vacío con Tailwind
         elemento.classList.add('border', 'border-red-500');
+
+        // Mostramos un error
+        mostrarError();
+    }
+}
+
+
+/**
+ * Muestra un mensaje de error si los campos estan vacios
+ */
+function mostrarError() {
+    const mensajeError = document.createElement('p');
+    mensajeError.textContent = 'Todos los campos son obligatorios';
+    mensajeError.classList.add('border', 'border-red-500', 'background-red-100', 'text-red-500', 'p-3', 'mt-5', 'text-center', 'error');
+
+    // Revisamos si ya hay algun elemento con esta clase para evitar repetir el mensaje de error
+    const errores = document.querySelectorAll('.error');
+
+    if(errores.length === 0) {
+        // Agregamos el mensaje al final del formulario
+        formulario.appendChild(mensajeError);
     }
 }
