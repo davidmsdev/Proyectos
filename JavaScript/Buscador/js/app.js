@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('eventos');
 
     // Muestras los autos al cargar
-    mostrarAutos();
+    mostrarAutos(autos);
 
     // Llena el select de años con los años disponibles
     llenarSelect();
@@ -104,7 +104,10 @@ selectColor.addEventListener('change', (e) => {
 /**
  * Muestra todos los coches
  */
-function mostrarAutos() {
+function mostrarAutos(autos) {
+
+    // Elimina el HTML previo
+    limpiarHTML();
 
     // Recorremos todos los autos para mostrarlos
     autos.forEach( auto => {
@@ -121,6 +124,16 @@ function mostrarAutos() {
         // Insertar el auto en el HTML
         resultado.appendChild(autoHTML);
     });
+}
+
+/**
+ * Limpira el HTML del listado de autos
+ */
+function limpiarHTML() {
+    
+    while(resultado.firstChild) {
+        resultado.removeChild(resultado.firstChild);
+    }
 }
 
 /**
@@ -146,6 +159,9 @@ function filtrarAuto() {
     const resultado = autos.filter(filtrarMarca).filter(filtrarYear);
 
     console.log(resultado);
+
+    // Llamamos a la función que imprime los autos filtrados
+    mostrarAutos(resultado);
 }
 
 /**
