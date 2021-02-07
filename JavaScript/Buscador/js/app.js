@@ -143,7 +143,7 @@ function llenarSelect() {
 function filtrarAuto() {
 
     // Usamos fucnioens de alto nivel, filter llama a otra función a la cual se le pasa el auto
-    const resultado = autos.filter( filtrarMarca )
+    const resultado = autos.filter(filtrarMarca).filter(filtrarYear);
 
     console.log(resultado);
 }
@@ -156,6 +156,20 @@ function filtrarMarca(auto) {
     const { marca } = datosBusqueda;
     if(marca) {
         return auto.marca === marca;
+    } else {
+        return auto;
+    }
+}
+
+/**
+ * Filtra por el año, ya ha pasado por el filtro de marca
+ */
+function filtrarYear(auto) {
+
+    const { year } = datosBusqueda;
+    if(year) {
+        // Hay que tranformar a INT, dado que en datosBusqueda viene como un String
+        return auto.year === parseInt(year);
     } else {
         return auto;
     }
