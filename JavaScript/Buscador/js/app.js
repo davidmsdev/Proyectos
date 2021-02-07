@@ -161,8 +161,28 @@ function filtrarAuto() {
 
     console.log(resultado);
 
-    // Llamamos a la función que imprime los autos filtrados
-    mostrarAutos(resultado);
+    // Comprobamos que almenos hay 1 resultado
+    if(resultado.length) {
+        // Llamamos a la función que imprime los autos filtrados
+        mostrarAutos(resultado);
+    } else {
+        noResultado();
+    }
+    
+}
+
+/**
+ * Muestra un mensaje si no hay resultados en la busqueda
+ */
+function noResultado() {
+
+    limpiarHTML()
+    
+    const noResultado = document.createElement('div');
+    noResultado.classList.add('alerta', 'error');
+    noResultado.textContent = 'No hay resultados';
+
+    resultado.appendChild(noResultado);
 }
 
 /**
