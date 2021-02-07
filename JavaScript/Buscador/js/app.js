@@ -87,7 +87,7 @@ selectMaximo.addEventListener('change', (e) => {
 });
 
 selectPuertas.addEventListener('change', (e) => {
-    datosBusqueda.puertas = e.target.value;
+    datosBusqueda.puertas = parseInt(e.target.value);
     filtrarAuto();
 });
 
@@ -156,7 +156,8 @@ function llenarSelect() {
 function filtrarAuto() {
 
     // Usamos fucnioens de alto nivel, filter llama a otra función a la cual se le pasa el auto
-    const resultado = autos.filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo);
+    const resultado = autos.filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo).filter(
+        filtrarPuertas).filter(filtrarTransimison).filter(filtrarColor);
 
     console.log(resultado);
 
@@ -165,7 +166,8 @@ function filtrarAuto() {
 }
 
 /**
- * Filtra por marca
+ * Filtrar por marca
+ * @param {*} auto 
  */
 function filtrarMarca(auto) {
 
@@ -178,7 +180,8 @@ function filtrarMarca(auto) {
 }
 
 /**
- * Filtra por el año, ya ha pasado por el filtro de marca
+ * Filtrar por año
+ * @param {*} auto 
  */
 function filtrarYear(auto) {
 
@@ -192,7 +195,8 @@ function filtrarYear(auto) {
 }
 
 /**
- * Filtra por el minimo
+ * Filtrar por el minimo
+ * @param {*} auto 
  */
 function filtrarMinimo(auto) {
     
@@ -206,7 +210,8 @@ function filtrarMinimo(auto) {
 }
 
 /**
- * Filtra por el maximo
+ * Filtrar por el maximo
+ * @param {*} auto 
  */
 function filtrarMaximo(auto) {
     
@@ -214,6 +219,48 @@ function filtrarMaximo(auto) {
     if(maximo) {
         // Hay que tranformar a INT, dado que en datosBusqueda viene como un String
         return auto.precio <= maximo;
+    } else {
+        return auto;
+    }
+}
+
+/**
+ * Filtrar por puertas
+ * @param {*} auto 
+ */
+function filtrarPuertas(auto) {
+
+    const { puertas } = datosBusqueda;
+    if(puertas) {
+        return auto.puertas === puertas;
+    } else {
+        return auto;
+    }
+}
+
+/**
+ * Filtrar por transmision
+ * @param {*} auto 
+ */
+function filtrarTransimison(auto) {
+
+    const { transmision } = datosBusqueda;
+    if(transmision) {
+        return auto.transmision === transmision;
+    } else {
+        return auto;
+    }
+}
+
+/**
+ * Filtrar por color
+ * @param {*} auto 
+ */
+function filtrarColor(auto) {
+
+    const { color } = datosBusqueda;
+    if(color) {
+        return auto.color === color;
     } else {
         return auto;
     }
