@@ -68,30 +68,37 @@ document.addEventListener('DOMContentLoaded', () => {
 // Eventos para los select
 selectMarca.addEventListener('change', (e) => {
     datosBusqueda.marca = e.target.value;
+    filtrarAuto();
 });
 
 selectYear.addEventListener('change', (e) => {
     datosBusqueda.year = e.target.value;
+    filtrarAuto();
 });
 
 selectMinimo.addEventListener('change', (e) => {
     datosBusqueda.minimo = e.target.value;
+    filtrarAuto();
 });
 
 selectMaximo.addEventListener('change', (e) => {
     datosBusqueda.maximo = e.target.value;
+    filtrarAuto();
 });
 
 selectPuertas.addEventListener('change', (e) => {
     datosBusqueda.puertas = e.target.value;
+    filtrarAuto();
 });
 
 selectTransimison.addEventListener('change', (e) => {
     datosBusqueda.transmision = e.target.value;
+    filtrarAuto();
 });
 
 selectColor.addEventListener('change', (e) => {
     datosBusqueda.color = e.target.value;
+    filtrarAuto();
 });
 
 /**
@@ -127,5 +134,29 @@ function llenarSelect() {
         opcion.value = i;
         opcion.textContent = i;
         selectYear.appendChild(opcion);
+    }
+}
+
+/**
+ * Filtra los autos
+ */
+function filtrarAuto() {
+
+    // Usamos fucnioens de alto nivel, filter llama a otra función a la cual se le pasa el auto
+    const resultado = autos.filter( filtrarMarca )
+
+    console.log(resultado);
+}
+
+/**
+ * Filtra por marca
+ */
+function filtrarMarca(auto) {
+
+    const { marca } = datosBusqueda;
+    if(marca) {
+        return auto.marca === marca;
+    } else {
+        return auto;
     }
 }
