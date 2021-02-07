@@ -156,7 +156,7 @@ function llenarSelect() {
 function filtrarAuto() {
 
     // Usamos fucnioens de alto nivel, filter llama a otra función a la cual se le pasa el auto
-    const resultado = autos.filter(filtrarMarca).filter(filtrarYear);
+    const resultado = autos.filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo);
 
     console.log(resultado);
 
@@ -186,6 +186,34 @@ function filtrarYear(auto) {
     if(year) {
         // Hay que tranformar a INT, dado que en datosBusqueda viene como un String
         return auto.year === parseInt(year);
+    } else {
+        return auto;
+    }
+}
+
+/**
+ * Filtra por el minimo
+ */
+function filtrarMinimo(auto) {
+    
+    const { minimo } = datosBusqueda;
+    if(minimo) {
+        // Hay que tranformar a INT, dado que en datosBusqueda viene como un String
+        return auto.precio >= minimo;
+    } else {
+        return auto;
+    }
+}
+
+/**
+ * Filtra por el maximo
+ */
+function filtrarMaximo(auto) {
+    
+    const { maximo } = datosBusqueda;
+    if(maximo) {
+        // Hay que tranformar a INT, dado que en datosBusqueda viene como un String
+        return auto.precio <= maximo;
     } else {
         return auto;
     }
