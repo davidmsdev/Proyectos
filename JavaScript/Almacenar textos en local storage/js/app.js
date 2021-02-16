@@ -9,6 +9,15 @@ eventListeners();
 
 function eventListeners() {
     formulario.addEventListener('submit', agregarTweet);
+
+    // Cuando el documento esta listo, obtenemos los tweets que hay en localstorage
+    document.addEventListener('DOMContentLoaded', () => {
+        // Si hay tweets en local storage se lo asignamos a la variable, sino, le asignamos un array vacío
+        tweets = JSON.parse(localStorage.getItem('tweets')) || [];
+        console.log(tweets);
+
+        crearHTML();
+    });
 }
 
 // Funciones
@@ -84,6 +93,8 @@ function crearHTML() {
             listaTweets.appendChild(li);
         })
     }
+
+    sincronizarStorage();
 }
 
 /**
@@ -93,4 +104,11 @@ function eliminarHTML() {
     while(listaTweets.firstChild) {
         listaTweets.removeChild(listaTweets.firstChild);
     }
+}
+
+/**
+ * Almacena los tweets en local storage
+ */
+function sincronizarStorage() {
+    localStorage.setItem('tweets', JSON.stringify(tweets));
 }
