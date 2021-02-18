@@ -102,6 +102,53 @@ UserInterface.prototype.mostrarMensaje = (mensaje, tipo) => {
 
 }
 
+// prototype que muestra el resultado de la cotización
+UserInterface.prototype.mostrarResultado = (total, seguro) => {
+
+    const { marca, year, tipo } = seguro;
+    let textoMarca;
+
+    switch(marca) {
+        case '1':
+            textoMarca = 'Amerciano';
+            break;
+        case '2':
+            textoMarca = 'Europeo';
+            break;
+        case '3':
+            textoMarca = 'Asiatcio';
+            break;
+        default:
+            break;
+    }
+    
+    // Crear el resultado
+    const div = document.createElement('div');
+    div.classList.add('mt-10');
+
+    div.innerHTML = `
+        <p class="header">Tu resumen</p>
+        <p class="font-bold">Total: <span class="font-normal">${total} €</span></p>
+        <p class="font-bold">Marca: <span class="font-normal">${textoMarca}</span></p>
+        <p class="font-bold">Año: <span class="font-normal">${year}</span></p>
+        <p class="font-bold">Tipo de seguro: <span class="font-normal capitalize">${tipo}</span></p>
+    `;
+
+    // Obtenemos el DIV donde queremos insertar el resultado
+    const resultadoDiv = document.querySelector('#resultado');
+    
+    // Mostramos el spinner de cargando resultados
+    const spinner = document.querySelector('#cargando');
+    spinner.style.display = 'block';
+
+    setTimeout(() => {
+        spinner.style.display = 'none';
+        // Una vez removido el spinner agregamos el div
+        resultadoDiv.appendChild(div); 
+    }, 3000);
+
+}
+
 // Instanciamos userInterface
 const ui = new UserInterface();
 console.log(ui);
@@ -140,10 +187,19 @@ function cotizarSeguro(e) {
 
     ui.mostrarMensaje('Cotizando', 'exito');
 
+    // Ocultar cotizaciones previas
+    const resultados = document.querySelector('#resultado div');
+
+    // En la primera vez no hay resultados, y si hay los eliminamos
+    if(resultados != null) {
+        resultados.remove();
+    }
+
     // Instanciar el seguro con los datos del formulario
     const seguro = new Seguro(marca, year, tipo);
-    seguro.cotizarSeguro();
+    const total = seguro.cotizarSeguro();
 
     // Utilizar el prototype que cotizará
+    ui.mostrarResultado(total, seguro);
     
 }
