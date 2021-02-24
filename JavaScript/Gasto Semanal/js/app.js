@@ -26,6 +26,13 @@ class Presupuesto {
     nuevoGasto(gasto) {
         // Agregamos el nuevo gasto despues de hacer una copia del actual
         this.gastos = [...this.gastos, gasto];
+        this.calcularRestante();
+    }
+
+    calcularRestante() {
+        // Itera sobre todos los valores del array y los va sumando, inica en 0
+        const dineroGastado = this.gastos.reduce((total, gasto) => total + gasto.cantidad, 0 );
+        this.restante = this.presupuesto - dineroGastado;
     }
 }
 
@@ -64,7 +71,7 @@ class UI {
     agregarGastoListado(gastos) {
         
         this.limpiarHTML();
-        
+
         // Iterar sobre los gastos
         gastos.forEach( gasto => {
             
@@ -77,7 +84,7 @@ class UI {
             console.log(nuevoGasto);
 
             // Agregar HTML del gasto
-            nuevoGasto.innerHTML = `${nombre} <span class="badge badge-primary badge-pill"> ${cantidad}</span>`;
+            nuevoGasto.innerHTML = `${nombre} <span class="badge badge-primary badge-pill"> ${cantidad}€</span>`;
 
             // Botón para borrar el gasto
             const btnBorrar = document.createElement('button');
@@ -95,6 +102,11 @@ class UI {
         while(gastoListado.firstChild) {
             gastoListado.removeChild(gastoListado.firstChild);
         }
+    }
+
+    // Imprimer por pantalla el restante actualizado
+    actualizarRestante(restante) {
+        document.querySelector('#restante').textContent = restante;
     }
 }
 
@@ -141,9 +153,10 @@ function agregarGasto(e) {
 
     ui.imprimirAlerta('Gasto agregado');
 
-    // Imprimir los gastos, los extraemos de presupuesto
-    const { gastos } = presupuesto;
+    // Imprimir los gastos y el restante, los extraemos de presupuesto
+    const { gastos, restante } = presupuesto;
     ui.agregarGastoListado(gastos);
+    ui.actualizarRestante(restante);
 
     formulario.reset();
 }
