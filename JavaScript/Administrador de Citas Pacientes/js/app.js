@@ -15,6 +15,12 @@ class Citas {
     constructor() {
         this.citas = [];
     }
+
+    agregarCita(cita) {
+        this.citas = [...this.citas, cita];
+
+        console.log(this.citas);
+    }
 }
 
 class UI {
@@ -78,11 +84,12 @@ const citaObj = {
 function datosCita(e) {
     // El atributo HTML name de los campos tienen el mismo nombre que la propiedad del objeto por lo que podemos
     // asignarle en tiempo real lo que el usuario esta escribiendo a nuestro objeto
-    citaObj[e.target.name] = e.target.value;;
-
-    console.log(citaObj);
+    citaObj[e.target.name] = e.target.value;
 }
 
+/**
+ * Crea una nueva cita
+ */
 function nuevaCita(e) {
 
     e.preventDefault();
@@ -94,4 +101,27 @@ function nuevaCita(e) {
     if(mascota === '' || propietario === '' || telefono === '' || fecha === '' || hora === '' || sintomas === '') {
         ui.imprimirAlerta('Todos los campos son obligatorios', 'Error');
     }
+
+    // Generar ID único
+    citaObj.id = Date.now();
+
+    // Le pasamo una copia del objeto, para que no se sobrescriba siempre la misma cita, si no lo hacemos siempre almacena la misma cita
+    // Le pasamos una copia sin la referencia del objeto global
+    administarCitas.agregarCita({...citaObj});
+
+    reinicarObjeto();
+
+    formulario.reset();
+}
+
+/**
+ * Borra todos los campos del objeto de citas
+ */
+function reinicarObjeto() {
+    citaObj.mascota = '';
+    citaObj.propietario = '';
+    citaObj.telefono = '';
+    citaObj.fecha = '';
+    citaObj.hora = '';
+    citaObj.sintomas = '';
 }
