@@ -27,6 +27,11 @@ class Citas {
     eliminarCita(id) {
         this.citas = this.citas.filter(cita => cita.id !== id);
     }
+
+    editarCita(citaActualizada) {
+        // Recorre todo el objeto cuando los ID son iguales asiganmos la citaActualizada
+        this.citas = this.citas.map(cita => cita.id === citaActualizada.id ? citaActualizada : cita);
+    }
 }
 
 class UI {
@@ -191,9 +196,10 @@ function nuevaCita(e) {
         ui.imprimirAlerta('Editada correctamente');
 
         // Pasar el objeto de la dita a edición
+        administarCitas.editarCita({...citaObj});
 
         // Cambiar el texto del botón
-        formulario.querySelector('button[type="submit]').textContent = 'Crear Cita';
+        formulario.querySelector('button[type="submit"]').textContent = 'Crear Cita';
 
         editando = false;
 
@@ -263,7 +269,7 @@ function cargarEdicion(cita) {
     citaObj.id = id;
 
     // Cambiar el texto del botón
-    formulario.querySelector('button[type="submit]').textContent = 'Guardar Cambios';
+    formulario.querySelector('button[type="submit"]').textContent = 'Guardar Cambios';
 
     editando = true;
 }
