@@ -1,5 +1,6 @@
 import Citas from './classes/Citas.js';
 import UI from './classes/UI.js';
+import App from './classes/App.js';
 
 import { 
     mascotaInput, 
@@ -75,8 +76,22 @@ const citaObj = {
         // Le pasamos una copia sin la referencia del objeto global
         administarCitas.agregarCita({...citaObj});
 
-        // Mensaje de agregado correctamente
-        ui.imprimirAlerta('Se agregó la cita correctamente');
+        // Insertar registro en indexDB
+        const transaction = DB.transaction(['citas'], 'readwrite');
+
+        // Habiltiar el object store
+        const objectStore = transaction.objectStore('citas');
+
+        // insertar en la BD
+        objectStore.add(citaObj);
+
+        transaction.oncomplete = () => {
+            console.log('Cita agregada');
+            // Mensaje de agregado correctamente
+            ui.imprimirAlerta('Se agregó la cita correctamente');
+        }
+
+        
     }
 
     reinicarObjeto();
