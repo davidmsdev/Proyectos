@@ -2,6 +2,7 @@ const resultado = document.querySelector('#resultado');
 const formulario = document.querySelector('#formulario');
 const registroPorPagina = 40;
 let totalPaginas;
+let iterador;
 
 window.onload = () => {
     formulario.addEventListener('submit', validarFormulario);
@@ -34,6 +35,14 @@ function buscarImagenes(termino) {
             console.log(totalPaginas);
             mostrarImagenes(resultado.hits);
         });
+}
+
+// Generador que registra la cantidad de elementos de acuerdo a las páginas
+function *crearPaginador(total) {
+    for(let i = 1; i <= total; i++) {
+        // Registramos los valores
+        yield i;
+    }
 }
 
 function calcularPaginas(total) {
@@ -70,7 +79,14 @@ function mostrarImagenes(imagenes) {
                 </div>
             </div>   
         `;
-    })
+    });
+
+    imprimirPaginador();
+}
+
+function imprimirPaginador() {
+    iterador = crearPaginador(totalPaginas);
+    console.log(iterador.next());
 }
 
 
