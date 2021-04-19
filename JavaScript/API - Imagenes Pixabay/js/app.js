@@ -5,6 +5,7 @@ const paginacionDiv = document.querySelector('#paginacion');
 const registroPorPagina = 40;
 let totalPaginas;
 let iterador;
+let paginaActual = 1;
 
 window.onload = () => {
     formulario.addEventListener('submit', validarFormulario);
@@ -20,15 +21,16 @@ function validarFormulario(e) {
         return;
     }
 
-    buscarImagenes(terminoBusqueda);
+    buscarImagenes();
 }
 
-function buscarImagenes(termino) {
+function buscarImagenes() {
 
+    const termino = document.querySelector('#termino').value;
     console.log(termino);
 
     const key = '21209552-4c9217a3fdc7952a196683822';
-    const url = `https://pixabay.com/api/?key=${key}&q=${termino}&per_page=${registroPorPagina}`;
+    const url = `https://pixabay.com/api/?key=${key}&q=${termino}&per_page=${registroPorPagina}&page=${paginaActual}`;
 
     fetch(url)
         .then(respuesta => respuesta.json())
@@ -103,7 +105,16 @@ function imprimirPaginador() {
         boton.href = '#';
         boton.dataset.pagina = value;
         boton.textContent = value;
-        boton.classList.add('siguiente', 'bg-yellow-400', 'px-4', 'py-1', 'mr-2', 'font-bold', 'mb-4', 'uppercase', 'rounded');
+        boton.classList.add('siguiente', 'bg-yellow-400', 'px-4', 'py-1', 'mr-2', 'font-bold', 'mb-4', 'rounded');
+
+        boton.onclick = () => {
+            paginaActual = value;
+
+            // Cuando demos click lo que hacemos es volver a llamar a la API pero con la página que queremos
+            // paginaActual se iguala al value del botón, es decir si clicamos en el 3 paginaActual será 3,
+            // por lo que la llamada a la API será a la página 3
+            buscarImagenes();
+        }
 
         paginacionDiv.appendChild(boton);
     }
