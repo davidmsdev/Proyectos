@@ -1,5 +1,6 @@
 const url = 'http://localhost:4000/clientes';
 
+// Cuando se crea un nuevo cliente
 export const newClient = async client => {
     try {
         await fetch(url, {
@@ -19,3 +20,16 @@ export const newClient = async client => {
         
     }
 };
+
+// Obtener todos los clientes
+export const getClients = async () => {
+    try {
+        // Por defecto FETCH envia petición GET
+        const result = await fetch(url);
+        const clients = await result.json();
+        return clients;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
