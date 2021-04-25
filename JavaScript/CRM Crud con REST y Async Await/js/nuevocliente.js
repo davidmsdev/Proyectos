@@ -1,4 +1,5 @@
 import { showAlert } from './funciones.js';
+import { newClient } from './API.js';
 
 // Protegemos las varaibles para que sean locales
 (function() {
@@ -24,6 +25,9 @@ import { showAlert } from './funciones.js';
             showAlert('Todos los campos son obligatorios');
             return;
         }
+
+        // Si pasamos la validación
+        newClient(client);
         
     }
 

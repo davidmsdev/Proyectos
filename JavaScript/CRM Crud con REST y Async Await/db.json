@@ -1,3 +1,18 @@
 {
-  "clientes": []
+  "clientes": [
+    {
+      "name": "David",
+      "email": "dmoralessal87@gmail.com",
+      "phone": "663778854",
+      "bussines": "Decathlon",
+      "id": 1
+    },
+    {
+      "name": "David",
+      "email": "correo@correo.com",
+      "phone": "123456789",
+      "bussines": "Empresa",
+      "id": 2
+    }
+  ]
 }
