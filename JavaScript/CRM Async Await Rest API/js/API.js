@@ -56,3 +56,20 @@ export const getClient = async id => {
         console.log(error);
     }
 }
+
+// Actualiza un registro
+export const updateClient = async client => {
+    console.log(client);
+    try {
+        await fetch(`${url}/${client.id}`, {
+            method: 'PUT',
+            body: JSON.stringify(client),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        window.location.href = 'index.html';
+    } catch (error) {
+        console.log(error);
+    }
+}

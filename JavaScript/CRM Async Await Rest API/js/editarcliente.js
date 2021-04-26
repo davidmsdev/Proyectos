@@ -1,4 +1,5 @@
-import { getClient } from './API.js';
+import { getClient, updateClient } from './API.js';
+import { showAlert, validate} from './funciones.js';
 
 (function() {
 
@@ -17,8 +18,11 @@ import { getClient } from './API.js';
         const clientID = parseInt(URLparams.get('id'));
 
         const client = await getClient(clientID);
-
         showClient(client);
+
+        // Submit al formulario
+        const form = document.querySelector('#formulario');
+        form.addEventListener('submit', validateClient);
     });
 
     function showClient(client) {
@@ -30,6 +34,29 @@ import { getClient } from './API.js';
         phoneInput.value = phone;
         bussinesInput.value = bussines;
         idInput.value = id;
+    }
+
+    function validateClient(e) {
+        e.preventDefault();
+        
+        const client = {
+            name: nameInput.value,
+            email: emailInput.value,
+            phone: phoneInput.value,
+            bussines: bussinesInput.value,
+            id: parseInt(idInput.value),
+        };
+
+        console.log(client);
+
+        if(validate(client)) {
+            showAlert('Todos los campos son obligatorios');
+            return;
+        }
+
+        // Reescribe el objeto
+        updateClient(client);
+
     }
 
 })();

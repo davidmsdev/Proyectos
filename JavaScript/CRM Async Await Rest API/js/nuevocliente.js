@@ -1,4 +1,4 @@
-import { showAlert } from './funciones.js';
+import { showAlert, validate} from './funciones.js';
 import { newClient } from './API.js';
 
 // Protegemos las varaibles para que sean locales
@@ -30,11 +30,5 @@ import { newClient } from './API.js';
         newClient(client);
         
     }
-
-    function validate(obj) {
-        // Comporbamos por cada atributo del objeto si almenos hay un input vacio, retornamos True o False
-        return !Object.values(obj).every( input => input !== '');
-    }
-
 
 })();

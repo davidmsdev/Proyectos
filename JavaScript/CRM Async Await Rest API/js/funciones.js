@@ -20,3 +20,8 @@ export function showAlert(msg) {
         }, 3000);
     }
 }
+
+export function validate(obj) {
+    // Comporbamos por cada atributo del objeto si almenos hay un input vacio, retornamos True o False
+    return !Object.values(obj).every( input => input !== '');
+}
