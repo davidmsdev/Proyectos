@@ -33,3 +33,14 @@ export const getClients = async () => {
         console.log(error);
     }
 }
+
+// Elimina un cliente, tenemos que pasar la url DELETE /posts/1
+export const deleteClient = async id => {
+    try {
+        await fetch(`${url}/${id}`, {
+            method: 'DELETE'
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}

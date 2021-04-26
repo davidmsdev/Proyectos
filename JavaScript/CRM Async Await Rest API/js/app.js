@@ -1,10 +1,12 @@
-import { getClients} from './API.js';
+import { getClients, deleteClient } from './API.js';
 
 (function() {
 
     const list = document.querySelector('#listado-clientes');
 
     document.addEventListener('DOMContentLoaded', showClients);
+
+    list.addEventListener('click', deleteConfirm);
 
     async function showClients() {
         const clients = await getClients();
@@ -33,6 +35,19 @@ import { getClients} from './API.js';
 
             list.appendChild(row);
         });
+    }
+
+    function deleteConfirm(e) {
+        // Usamos delegation para comprobar si el elemento que hemos clicado tiene la clase eliminar
+        if(e.target.classList.contains('eliminar')) {
+            const clientID = parseInt(e.target.dataset.cliente);
+
+            const confirmDelete = confirm('Deseas elimnar este registro?');
+
+            if(confirmDelete) {
+                deleteClient(clientID);
+            }
+        }
     }
 
 })();

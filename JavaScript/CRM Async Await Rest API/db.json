@@ -2,13 +2,6 @@
   "clientes": [
     {
       "name": "David",
-      "email": "correo1@correo.com",
-      "phone": "123456789",
-      "bussines": "sfsdfsdfsdfds",
-      "id": 1
-    },
-    {
-      "name": "David",
       "email": "correo@correo.com",
       "phone": "123456789",
       "bussines": "Empresa",
