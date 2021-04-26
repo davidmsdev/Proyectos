@@ -21,7 +21,7 @@ export const newClient = async client => {
     }
 };
 
-// Obtener todos los clientes
+// Obtener todos los clientes https://github.com/typicode/json-server
 export const getClients = async () => {
     try {
         // Por defecto FETCH envia petición GET
@@ -34,12 +34,24 @@ export const getClients = async () => {
     }
 }
 
-// Elimina un cliente, tenemos que pasar la url DELETE /posts/1
+// Elimina un cliente, tenemos que pasar la url DELETE /posts/1 https://github.com/typicode/json-server
 export const deleteClient = async id => {
     try {
         await fetch(`${url}/${id}`, {
             method: 'DELETE'
         });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// Obtener un cliente a partir de su ID https://github.com/typicode/json-server
+export const getClient = async id => {
+    try {
+        const result = await fetch(`${url}/${id}`);
+        const client = await result.json();
+        return client;
+
     } catch (error) {
         console.log(error);
     }
