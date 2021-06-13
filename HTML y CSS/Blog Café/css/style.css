@@ -36,6 +36,7 @@ a {
 
 h1, h2, h3, h4 {
     font-family: var(--headingFont);
+    line-height: 1.2rem;
 }
 
 h1 {
@@ -165,4 +166,36 @@ img {
 
 .button--primary {
     background-color: var(--black);
+}
+
+.button--secondary {
+    background-color: var(--primary);
+}
+
+.courses {
+    list-style: none;
+}
+
+.widget-course {
+    border-bottom: 1px solid var(--gray);
+    margin-bottom: 2rem;
+}
+
+.widget-course:last-of-type {
+    border: none;
+    margin-bottom: 0;
+}
+
+.widget-course__label {
+    font-family: var(--headingFont);
+    font-weight: 900;
+}
+
+.widget-course__info {
+    font-weight: 400;
+}
+
+.widget-course__label,
+.widget-course__info {
+    font-size: 2rem;
 }
