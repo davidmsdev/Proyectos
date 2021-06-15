@@ -36,7 +36,7 @@ a {
 
 h1, h2, h3, h4 {
     font-family: var(--headingFont);
-    line-height: 1.2rem;
+    line-height: 3rem;
 }
 
 h1 {
@@ -52,7 +52,7 @@ h3 {
 }
 
 h4 {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
 }
 
 img {
@@ -137,6 +137,8 @@ img {
         display: grid;
         grid-template-columns: 2fr 1fr;
         column-gap: 4rem;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
     }
 }
 
@@ -148,6 +150,10 @@ img {
 .post:last-of-type {
     border: none;
     margin-bottom: 0;
+}
+
+.post__content {
+    padding: 2rem;
 }
 
 .button {
@@ -183,6 +189,7 @@ img {
 .widget-course {
     border-bottom: 1px solid var(--gray);
     margin-bottom: 2rem;
+    padding: 2rem;
 }
 
 .widget-course:last-of-type {
@@ -208,4 +215,13 @@ img {
     background-color: var(--black);
     padding: 3rem 0;
     margin-top: 4rem;
+}
+
+/* Sobre Nosotros */
+@media (min-width: 768px) {
+    .about-us {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+    }
 }
