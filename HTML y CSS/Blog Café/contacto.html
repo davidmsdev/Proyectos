@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+
+        <div class="container">
+            <div class="bar">
+                <a href="index.html" class="logo">
+                    <h1 class="logo__name text-center">Blog<span class="logo__bold">DeCafe</span></h1>
+                </a>
+
+                <nav class="navigation">
+                    <a href="nosotros.html" class="navigation__link">Nosotros</a>
+                    <a href="cursos.html" class="navigation__link">Cursos</a>
+                    <a href="contacto.html" class="navigation__link">Contacto</a>
+                </nav>
+            </div>
+        </div>
+        <div class="header__text">
+            <h2>Blog de café con consejos y cursos</h2>
+            <p>Aprende de los expertos con las mejores recetas y consejos</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <h3 class="text-center">Contacto</h3>
+
+        <div class="contact-bg"></div>
+
+        <form class="form" action="">
+            <div class="field">
+                <label class="field__label" for="name">Nombre</label>
+                <input 
+                    class="field__input"
+                    type="text" 
+                    placeholder="Tu Nombre" 
+                    id="name"
+                >
+            </div>
+            <div class="field">
+                <label class="field__label" for="email">Email</label>
+                <input 
+                    class="field__input"
+                    type="email" 
+                    placeholder="Tu Email" 
+                    id="email"
+                >
+            </div>
+            <div class="field">
+                <label class="field__label" for="message">Mensaje</label>
+                <textarea 
+                    class="field__input field__input--textarea"
+                    id="message"
+                ></textarea>
+            </div>
+            <div class="field">
+                <input type="submit" value="Enviar" class="button button--primary">
+            </div>
+        </form>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="bar">
+                <a href="index.html" class="logo">
+                    <h1 class="logo__name no-margin text-center">Blog<span class="logo__bold">DeCafe</span></h1>
+                </a>
+
+                <nav class="navigation">
+                    <a href="nosotros.html" class="navigation__link">Nosotros</a>
+                    <a href="cursos.html" class="navigation__link">Cursos</a>
+                    <a href="contacto.html" class="navigation__link">Contacto</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
