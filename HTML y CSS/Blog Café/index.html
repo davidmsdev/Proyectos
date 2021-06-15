@@ -20,8 +20,6 @@
     <link rel="preload" href="css/style.css" as="style">
     <link rel="stylesheet" href="css/style.css">
 
-    <link rel="preload" href="img/blog1.jpg" as="image">
-
 </head>
 <body>
     <header class="header">
@@ -51,7 +49,10 @@
 
             <article class="post">
                 <div class="post_image">
-                    <img loading="lazy" src="img/blog1.jpg" alt="Imagen Blog">
+                    <picture>
+                        <source loading="lazy" srcset="img/blog1.webp" type="image/webp"> 
+                        <img loading="lazy" src="img/blog1.jpg" alt="Imagen Blog">
+                    </picture>
                 </div>
 
                 <div class="post__content">
@@ -67,7 +68,10 @@
 
             <article class="post">
                 <div class="post_image">
-                    <img loading="lazy" src="img/blog2.jpg" alt="Imagen Blog">
+                    <picture>
+                        <source loading="lazy" srcset="img/blog2.webp" type="image/webp"> 
+                        <img loading="lazy" src="img/blog2.jpg" alt="Imagen Blog">
+                    </picture>
                 </div>
 
                 <div class="post__content">
@@ -83,7 +87,10 @@
 
             <article class="post">
                 <div class="post_image">
-                    <img loading="lazy" src="img/blog3.jpg" alt="Imagen Blog">
+                    <picture>
+                        <source loading="lazy" srcset="img/blog3.webp" type="image/webp"> 
+                        <img loading="lazy" src="img/blog3.jpg" alt="Imagen Blog">
+                    </picture>
                 </div>
 
                 <div class="post__content">
