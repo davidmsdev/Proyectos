@@ -9,6 +9,12 @@ class Calculator {
     
         const initialValue = document.querySelector('#initial').value;
         const finalValue = document.querySelector('#final').value;
+
+        // Validar
+        if(initialValue === '' || finalValue === '') {
+            ui.imprimirAlerta('Ambos campos son obligatorios');
+            return;
+        }
     
         const result = ((finalValue - initialValue)/initialValue) * 100;
         ui.insertResult(result);
