@@ -1,0 +1,59 @@
+{
+    "name": "CPI",
+    "short_name": "CPI",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#0d2235",
+    "theme_color": "#0d2235",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "img/icons/logo-cip-72.png",
+            "type": "image/png",
+            "sizes": "72x72",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "img/icons/logo-cip-120.png",
+            "type": "image/png",
+            "sizes": "120x120",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "img/icons/logo-cip-128.png",
+            "type": "image/png",
+            "sizes": "128x128",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "img/icons/logo-cip-144.png",
+            "type": "image/png",
+            "sizes": "144x144",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "img/icons/logo-cip-152.png",
+            "type": "image/png",
+            "sizes": "152x152",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "img/icons/logo-cip-196.png",
+            "type": "image/png",
+            "sizes": "196x196",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "img/icons/logo-cip-256.png",
+            "type": "image/png",
+            "sizes": "256x256",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "img/icons/logo-cip-512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any maskable"
+        }
+    ]
+}
