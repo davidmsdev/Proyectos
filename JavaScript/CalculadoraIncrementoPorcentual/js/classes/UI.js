@@ -8,6 +8,7 @@ class UI {
         this.clearHTML();
     
         const divResultContent = document.createElement('div');
+        divResultContent.dataset.cy = 'result-box';
     
         if(result > 0) {
             divResultContent.classList.add('positive');
@@ -24,9 +25,10 @@ class UI {
     imprimirAlerta(message) {
 
         divResult.style.display = "none";
-        
+
         const divAlert = document.createElement('div');
         divAlert.classList.add('alert');
+        divAlert.dataset.cy = 'alert';
         divAlert.textContent = message;
         form.appendChild(divAlert);
 
