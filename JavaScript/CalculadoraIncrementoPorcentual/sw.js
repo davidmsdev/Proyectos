@@ -21,7 +21,6 @@ self.addEventListener('install', e => {
                 cache.addAll(archives);
             })
     )
-    
 });
 
 // Activar el Service Worker
@@ -36,12 +35,8 @@ self.addEventListener('fetch', e => {
     console.log('Fetch... ', e);
 
     e.respondWith(
-        (async function () {
-            const cachedResponse = await caches.match(e.request);
-            if (cachedResponse) {
-              return cachedResponse;
-            }
-            return fetch(e.request);
-        })()
+        caches
+            .match(e.request)
+            .then(cacheResponse => (cacheResponse ? cacheResponse : fetch(e.request)))
     )
 });
