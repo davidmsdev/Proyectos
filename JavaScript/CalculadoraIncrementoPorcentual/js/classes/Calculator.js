@@ -17,7 +17,8 @@ class Calculator {
         }
     
         const result = ((finalValue - initialValue)/initialValue) * 100;
-        ui.insertResult(result);
+        const finalResult = result.toFixed(2);
+        ui.insertResult(finalResult);
     }
 }
 
