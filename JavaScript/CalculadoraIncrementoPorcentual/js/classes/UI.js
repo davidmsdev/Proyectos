@@ -22,7 +22,7 @@ class UI {
         divResult.style.display = "flex";
     }
 
-    imprimirAlerta(message) {
+    showAlert(message) {
 
         divResult.style.display = "none";
 

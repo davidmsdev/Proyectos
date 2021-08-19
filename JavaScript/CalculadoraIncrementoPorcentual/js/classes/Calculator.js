@@ -12,7 +12,7 @@ class Calculator {
 
         // Validar
         if(initialValue === '' || finalValue === '') {
-            ui.imprimirAlerta('Ambos campos son obligatorios');
+            ui.showAlert('Ambos campos son obligatorios');
             return;
         }
     
