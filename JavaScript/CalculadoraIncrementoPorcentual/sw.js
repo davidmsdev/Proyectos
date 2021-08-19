@@ -34,4 +34,14 @@ self.addEventListener('activate', e => {
 // Evento FETCH para descargar archivos estáticos
 self.addEventListener('fetch', e => {
     console.log('Fetch... ', e);
+
+    e.respondWith(
+        (async function () {
+            const cachedResponse = await caches.match(e.request);
+            if (cachedResponse) {
+              return cachedResponse;
+            }
+            return fetch(e.request);
+        })()
+    )
 });
