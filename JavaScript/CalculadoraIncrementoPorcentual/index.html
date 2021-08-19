@@ -20,19 +20,19 @@
 </head>
 <body>
     <div class="container">
-        <h1>Calculadora Incremento Porcentual</h1>
+        <h1 data-cy="title">Calculadora Incremento Porcentual</h1>
 
         <p>Calcula el incremento o decremento porcentual entre dos números con esta sencilla calculadora.</p>
         <div class="calculator__container">
             <div class="calculator__form">
-                <form id="calculator" action="#">
+                <form data-cy="form" id="calculator" action="#">
                     <div class="row">
                         <label for="initial">Valor Inicial</label>
-                        <input type="number" name="initial" id="initial" autofocus>
+                        <input data-cy="initial-input" type="number" name="initial" id="initial" autofocus>
                     </div>
                     <div class="row">
                         <label for="final">Valor Final</label>
-                        <input type="number" name="final" id="final">
+                        <input data-cy="final-input" type="number" name="final" id="final">
                     </div>
                     <div class="row">
                         <input class="button-primary" type="submit" value="Calcular" />
