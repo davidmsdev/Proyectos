@@ -88,6 +88,7 @@ function mostrarAlerta(msg) {
 async function consultarAPI() {
 
     const { moneda, criptomoneda } = objBusqueda;
+    console.log(`BUSQUEDA: ${criptomoneda}`);
 
     const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`;
 
@@ -95,7 +96,9 @@ async function consultarAPI() {
     
     try {
         const respuesta = await fetch(url);
+        console.log(respuesta);
         const cotizacion = await respuesta.json();
+        console.log(cotizacion)
         mostrarCotizacionHTML(cotizacion.DISPLAY[criptomoneda][moneda]);
     } catch(error) {
         console.log(error);
