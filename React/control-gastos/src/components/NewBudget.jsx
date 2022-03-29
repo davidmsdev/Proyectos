@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NewBudget = () => {
+const NewBudget = ({budget, setBudget}) => {
   return (
     <div className='contenedor-presupuesto contenedor sombra'>
       <form action="" className='formulario'>
@@ -10,8 +10,9 @@ const NewBudget = () => {
             type="text" 
             className="nuevo-presupuesto"
             placeholder='Añade tu presupuesto'
-            name="" 
-            id="" />
+            value={budget}
+            onChange={ e => setBudget(e.target.value)}
+          />
         </div>
 
         <input type="submit" value="Añadir"/>
